@@ -13,7 +13,7 @@ app.on('ready', () =>{
         icon : __dirname + '/resources/installer/Icon.ico',
         webPreferences : {defaultFontSize : 14},
         autoHideMenuBar : true,
-        kiosk:true
+        // kiosk:true
     });
 
     // 창이 ready 상태가 되면 보여주기
