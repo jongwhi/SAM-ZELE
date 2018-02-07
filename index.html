@@ -1,69 +1,23 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <style>
-            h1{
-                color: cyan;
-            }
-        </style>
-        <script>
-            function printClock() {
-                var clock = document.getElementById("clock"); // 출력할 장소 선택
-                var currentDate = new Date(); // 현재시간
-                var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
-                var amPm = 'AM'; // 초기값 AM
-                var currentYear = addZeros(currentDate.getFullYear(),2);
-                var currentMonth = addZeros(currentDate.getMonth()+1,2);
-                var currentDay = addZeros(currentDate.getDate(),2);
-                var currentDate2 = currentDate.getDay();
-                var currentHours = addZeros(currentDate.getHours(),2); 
-                var currentMinute = addZeros(currentDate.getMinutes() ,2);
-                var currentSeconds =  addZeros(currentDate.getSeconds(),2);
-    
-                if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
-    	           amPm = 'PM';
-    	           currentHours = addZeros(currentHours - 12,2);
-                }
-                if(currentDate2 == 0){
-                    currentDate2 = "일"
-                }else if(currentDate2 == 1){
-                    currentDate2 = "월"
-                }else if(currentDate2 == 2){
-                    currentDate2 = "화"
-                }else if(currentDate2 == 3){
-                    currentDate2 = "수"
-                }else if(currentDate2 == 4){
-                    currentDate2 = "목"
-                }else if(currentDate2 == 5){
-                    currentDate2 = "금"
-                }else if(currentDate2 == 6){
-                    currentDate2 = "토"
-                }
-
-                clock.innerHTML = currentYear +"/"+ currentMonth+"/" + currentDay +"/"+currentDate2+"<br>"+currentHours+":"+currentMinute+"<span style='font-size:10px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
-    
-                setTimeout("printClock()",1000); // 1초마다 printClock() 함수 호출
-            }
-            function dateFormatChange(date){
-                var options={
-                    weekday:"short",year:"numeric",month:"short",
-                    day:"numeric",hour:"2-digit",minute:"2-digit"
-                };
-                return date.toLocaleTimeString("ko-KR",options);
-            }
-            function addZeros(num, digit) { // 자릿수 맞춰주기
-	           var zero = '';
-	           num = num.toString();
-	           if (num.length < digit) {
-	               for (i = 0; i < digit - num.length; i++) {
-	                   zero += '0';
-	               }
-	           }
-	           return zero + num;
-            }
+        <!-- clock.js = 시간 출력해주는 js -->
+        <script src="js/clock.js"></script>
+        <!-- body에서 시간을 출력해주는 코드 -->
+        <script type="text/javascript">
+            // setInterval() 함수는 javascript 내에 내장되어 있는 함수로 타이머 함수라 할 수 있다.
+            // setInterval() 함수 내의 내용들을 지연시간 만큼의 텀으로 계속해서 실행
+            setInterval(function(){
+                document.getElementById('clock').innerHTML = printClock();
+            }, 1000);
         </script>
+        <!-- Style -->
+        <link rel="stylesheet" href="css/main.css">
     </head>
-    <body onload="printClock()">
-        <div style="text-align:center; width:400px; height:50px; font-size:20px; line-height:50px; color:#666;" id="clock"></div>
+    <body>
+        <!-- 왼쪽 위 = 시간 -->
+        <div class="top-left" id="clock"></div>
+        <!-- 오른쪽 위 = 날씨 예정 -->
+        <div class="top-right"><h1>Testing</h1></div>
     </body>
 </html>

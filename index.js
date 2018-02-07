@@ -3,16 +3,14 @@ const {app, BrowserWindow} = require('electron');
 let win;
 
 app.on('ready', () =>{
+    // window 창에 대한 옵션 - 크기 및 기타 옵션들
     win = new BrowserWindow(
     {
         width : 800,
-        minWidth : 330,
         height : 500,
-        minHeight : 450,
-        show : false,
-        icon : __dirname + '/resources/installer/Icon.ico',
-        webPreferences : {defaultFontSize : 14},
+        // menubar 숨기는 옵션
         autoHideMenuBar : true,
+        // 전체화면으로 전환해주는 옵션
         // kiosk:true
     });
 
