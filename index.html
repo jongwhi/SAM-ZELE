@@ -4,19 +4,21 @@
         <!-- clock.js = 시간 출력해주는 js -->
         <script src="js/clock.js"></script>
         <script src="js/weather.js"></script>
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
         <!-- body에서 시간을 출력해주는 코드 -->
         <script type="text/javascript">
+            var newArray = new Array();
+            var data = "";
             // setInterval() 함수는 javascript 내에 내장되어 있는 함수로 타이머 함수라 할 수 있다.
             // setInterval() 함수 내의 내용들을 지연시간 만큼의 텀으로 계속해서 실행
             setInterval(function(){
                 document.getElementById('clock').innerHTML = printClock();
             }, 1000);
             setInterval(function(){
-                document.getElementById('demo').innerHTML = printForecast();
-            }, 87000);
-        </script>
-        <script>
+                newArray = printForecast();
+                document.getElementById('demo').innerHTML = newArray[0]+"<br>"+newArray[1]+newArray[2];
+                document.getElementsByName('changeicon').setAttribute('id', newArray[2]);
+            }, 1000);
         </script>
         <!-- Style -->
         <link rel="stylesheet" href="css/main.css">
@@ -27,5 +29,22 @@
         <!-- 오른쪽 위 = 날씨 예정 -->
         <div class="top-right" id="temp"><h1>Testing</h1>
         <br><p id="demo"></p></div>
+        <figure class="icons">
+            <canvas name="changeicon" id="" width="64" height="64"></canvas>
+            <canvas id="clear-day" width="64" height="64">
+        </canvas>
+        </figure>
+        <script src="skycons.js"></script>
+        <script>
+            var icons = new Skycons(),
+                list  = [
+                    "clear-day", "clear-night", "partly-cloudy-day",
+                    "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind", "fog"
+                ],
+                i;
+                for(i = list.length; i--; )
+                    icons.set(list[i], list[i]);
+            icons.play();
+    </script>
     </body>
 </html>

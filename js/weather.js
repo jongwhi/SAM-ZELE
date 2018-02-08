@@ -1,5 +1,7 @@
 var https = require("https");
 var weatherdata="";
+var array= new Array();
+
 function printForecast(){
     var result = forecast();
     return result;
@@ -15,9 +17,10 @@ function forecast(){
         
         res.on("end", function result(){
             var data = JSON.parse(info);
-            var zone = data.timezone;
-            var temp = data.currently.temperature;
-            weatherdata = zone+"<br>"+temp;
+            array[0] = data.timezone;
+            array[1] = data.currently.temperature;
+            array[2] = data.currently.icon;
+            weatherdata = array;
         });
     });
     return weatherdata;
