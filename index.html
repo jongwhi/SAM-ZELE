@@ -3,7 +3,8 @@
         <meta charset="utf-8">
         <!-- clock.js = 시간 출력해주는 js -->
         <script src="js/clock.js"></script>
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/weather.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <!-- body에서 시간을 출력해주는 코드 -->
         <script type="text/javascript">
             // setInterval() 함수는 javascript 내에 내장되어 있는 함수로 타이머 함수라 할 수 있다.
@@ -11,24 +12,11 @@
             setInterval(function(){
                 document.getElementById('clock').innerHTML = printClock();
             }, 1000);
+            setInterval(function(){
+                document.getElementById('demo').innerHTML = printForecast();
+            }, 87000);
         </script>
         <script>
-            function getWeatherData(){
-                var apiKey = "0db5c91a03124d53a58af4189b7d0cd0";
-                var exclude = "?exclude=minutely,hourly,daily,alerts,flags";
-                var unit = "?units=si";
-                var url = "https://api.darksky.net/forecast/"+apiKey+"/37.5,127.8"+exclude+unit;
-                
-                $.ajax({
-                    url: url,
-                    dataType: "jsonp",
-                    success: function(data){
-                        var description = data.currently.summary;
-                        var temperature = data.currently.temperature;
-                        document.getElementById('location').innerHTML = description;
-                    }
-                });
-            }
         </script>
         <!-- Style -->
         <link rel="stylesheet" href="css/main.css">
@@ -38,6 +26,6 @@
         <div class="top-left" id="clock"></div>
         <!-- 오른쪽 위 = 날씨 예정 -->
         <div class="top-right" id="temp"><h1>Testing</h1>
-        <br><p id="location"></p></div>
+        <br><p id="demo"></p></div>
     </body>
 </html>
