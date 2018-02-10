@@ -1,25 +1,6 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <!-- clock.js = 시간 출력해주는 js -->
-        <script src="js/clock.js"></script>
-        <script src="js/weather.js"></script>
-        <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <!-- body에서 시간을 출력해주는 코드 -->
-        <script type="text/javascript">
-            var newArray = new Array();
-            var data = "";
-            // setInterval() 함수는 javascript 내에 내장되어 있는 함수로 타이머 함수라 할 수 있다.
-            // setInterval() 함수 내의 내용들을 지연시간 만큼의 텀으로 계속해서 실행
-            setInterval(function(){
-                document.getElementById('clock').innerHTML = printClock();
-            }, 1000);
-            setInterval(function(){
-                newArray = printForecast();
-                document.getElementById('demo').innerHTML = newArray[0]+"<br>"+newArray[1]+newArray[2];
-                document.getElementsByName('changeicon').setAttribute('id', newArray[2]);
-            }, 1000);
-        </script>
         <!-- Style -->
         <link rel="stylesheet" href="css/main.css">
     </head>
@@ -30,20 +11,46 @@
         <div class="top-right" id="temp"><h1>Testing</h1>
         <br><p id="demo"></p></div>
         <figure class="icons">
-            <canvas name="changeicon" id="" width="64" height="64"></canvas>
-            <canvas id="clear-day" width="64" height="64">
-        </canvas>
+            <canvas id="clear-day" width="64" height="64"></canvas>
+            <canvas id="clear-night" width="64" height="64"></canvas>
+            <canvas id="partly-cloudy-day" width="64" height="64"></canvas>
+            <canvas id="partly-cloudy-night" width="64" height="64"></canvas>
+            <canvas id="cloudy" width="64" height="64"></canvas>
+            <canvas id="rain" width="64" height="64"></canvas>
+            <canvas id="sleet" width="64" height="64"></canvas>
+            <canvas id="snow" width="64" height="64"></canvas>
+            <canvas id="wind" width="64" height="64"></canvas>
+            <canvas id="fog" width="64" height="64"></canvas>
         </figure>
+        
+        <script src="js/clock.js"></script>
+        <script src="js/weather.js"></script>
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="skycons.js"></script>
         <script>
+            var newArray = new Array();
+            var data = "";
+            // setInterval() 함수는 javascript 내에 내장되어 있는 함수로 타이머 함수라 할 수 있다.
+            // setInterval() 함수 내의 내용들을 지연시간 만큼의 텀으로 계속해서 실행
+            setInterval(function(){
+                document.getElementById('clock').innerHTML = printClock();
+            }, 1000);
+            
+            setInterval(function(){
+                newArray = printForecast();
+                document.getElementById('demo').innerHTML = newArray[0]+"<br>"+newArray[1]+"<br>"+newArray[2];
+            }, 1000);
+            
             var icons = new Skycons(),
                 list  = [
                     "clear-day", "clear-night", "partly-cloudy-day",
                     "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind", "fog"
                 ],
-                i;
+                i,
+                data = newArray[2];
                 for(i = list.length; i--; )
-                    icons.set(list[i], list[i]);
+                    if(data == list[i])
+                        icons.set(list[i], list[i]);
             icons.play();
     </script>
     </body>
