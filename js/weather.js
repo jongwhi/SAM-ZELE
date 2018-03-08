@@ -1,29 +1,30 @@
-var https = require("https");
-var weatherdata="";
-var array= new Array();
+(function(){
+    'use strict';
+// https 모듈과 같이 데이터 통신 역할을 하는 $http
+    function forecast($http) {
 
-function printForecast(){
-    var result = forecast();
-    return result;
-}
+        let service = {}; //객체 초기자 , 객체 생성;
+        service.forecast = null; //객체 속성 초기화
 
-function forecast(){
-    https.get("https://api.darksky.net/forecast/02dea48a50f8772adc70d77d54675fe0/37.8267,127.4233",function(res){
-        var info = "";
+        service.init = function () {
+            return $http.get('https://api.darksky.net/forecast/'+config.forecast.key+'/'+config.geolocation.latitude+','+config.geolocation.longitude)
+                .then(function (response) {
+                    return service.forecast = response;
+                });
+        }
 
-        res.on("data", function (chunk) {
-            info += chunk;
-        });
-        
-        res.on("end", function result(){
-            var data = JSON.parse(info);
-            array[0] = data.timezone;
-            array[1] = data.currently.temperature;
-            array[2] = data.currently.icon;
-            weatherdata = array;
-        });
-    });
-    return weatherdata;
-}
-//export this function to use that in main file
-module.exports.forecast = forecast;
+        service.currentForecast = function () {
+            if (service.forecast === null) {
+                return  null;
+            }
+            service.forecast.data.currently.temperature = parseFloat((service.forecast.data.currently.temperature-32)/1.8).toFixed(1);
+            service.forecast.data.currently.wi = "wi-forecast-io-" + service.forecast.data.currently.icon;
+
+            return service.forecast.data.currently;
+        }
+        return service;
+    }
+    angular.module('myApp').factory('WeatherService',forecast);
+    //controller에 WeatherService 라는 이름의 서비스로 주입가능
+    //forcast 의 return 값 을 사용가능.
+}());

@@ -1,20 +1,23 @@
 {
-  "name": "SAM-ZELE",
+  "name": "sam_example",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "dependencies": {
-    "express": "^4.16.2",
-    "jquery": "^3.3.1"
-  },
-  "devDependencies": {
-    "electron": "^1.7.11"
-  },
+  "private": true,
+  "description": "sam_example",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "sam_example",
     "start": "electron ."
   },
-  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.8.2"
+  },
+  "dependencies": {
+    "angular": "^1.6.9",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "forecast": "^0.3.2",
+    "request": "^2.83.0"
+  }
 }
