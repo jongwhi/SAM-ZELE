@@ -5,5 +5,8 @@ var config = {
     geolocation : {
         latitude : "37.541",
         longitude:"126.986"
+    },
+    googlemap : {
+        key : "AIzaSyBLtNK_2rfl0XzePjji2WKo2PlIuBdTeNk"
     }
 }

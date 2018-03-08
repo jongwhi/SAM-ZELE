@@ -14,6 +14,7 @@
         <script src="js/clock.js"></script>
         <!--날씨를 출력해주는 js-->
         <script src="js/weather.js"></script>
+        <script src="js/directions.js"></script>
 
 
         <script type="text/javascript">
@@ -37,6 +38,14 @@
         <div class="top-right">
         <span class="icon-small dimmed wi wi-fw {{currentForecast.wi}}"> </span>
         <span class="temperature"> {{currentForecast.temperature}}&deg;</span>
+        </div>
+        <div class="news_frame">
+            <span class="travel_mode">{{currentDirections.travel_mode}}</span><br>
+            <span class="start_location_lat">{{currentDirections.start_location.lat}}</span><br>
+            <span class="start_location_lng">{{currentDirections.start_location.lng}}</span><br>
+            <span class="end_location_lat">{{currentDirections.end_location.lat}}</span><br>
+            <span class="end_location_lng">{{currentDirections.end_location.lng}}</span><br>
+            <span class="duration">{{currentDirections.duration.value}}</span><br>
         </div>
     </body>
 </html>
