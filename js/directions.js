@@ -7,7 +7,7 @@
         service.direction = null; //객체 속성 초기화
 
         service.init = function () {
-            return $http.get('https://maps.googleapis.com/maps/api/directions/json?origin=Seoul&destination=Busan&key='+config.googlemap.key)
+            return $http.get('https://maps.googleapis.com/maps/api/directions/json?origin=Chicago,IL&destination=Los+Angeles,CA&waypoints=Joplin,MO|Oklahoma+City,OK&key='+config.direction.key)
                 .then(function (response) {
                     return service.direction = response;
                 });
@@ -17,12 +17,7 @@
             if (service.direction === null) {
                 return  null;
             }
-            service.direction.data.routes.legs.steps.travel_mode = service.direction.data.routes.legs.steps.travel_mode;
-            service.direction.data.routes.legs.steps.start_location.lat = service.direction.data.routes.legs.steps.start_location.lat;
-            service.direction.data.routes.legs.steps.start_location.lng = service.direction.data.routes.legs.steps.start_location.lng;
-            service.direction.data.routes.legs.steps.end_location.lat = service.direction.data.routes.legs.steps.end_location.lat;
-            service.direction.data.routes.legs.steps.end_location.lng = service.direction.data.routes.legs.steps.end_location.lng;
-            service.direction.data.routes.legs.steps.duration.value = service.direction.data.routes.legs.steps.duration.value;
+            service.direction.data.routes.legs.steps.distance.text = service.direction.data.routes.legs.steps.distance.text;
 
             return service.direction.data.routes.legs.steps;
         }

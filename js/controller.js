@@ -24,6 +24,7 @@
                 });
             }
             directionData();
+            $interval(directionData,1000);
         }
 
         _this.init();

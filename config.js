@@ -8,5 +8,8 @@ var config = {
     },
     googlemap : {
         key : "AIzaSyBLtNK_2rfl0XzePjji2WKo2PlIuBdTeNk"
+    },
+    direction:{
+        key:"AIzaSyArYLp5ECXNDMMG6kKTHrvO1gEYimBxx5g"
     }
 }
