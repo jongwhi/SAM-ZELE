@@ -11,5 +11,8 @@ var config = {
     },
     direction:{
         key:"AIzaSyArYLp5ECXNDMMG6kKTHrvO1gEYimBxx5g"
+    },
+    googlejavascriptapi:{
+        key:"AIzaSyAeWLqJOauaTuMtrzYmREs6soSYpPoWpVI"
     }
 }

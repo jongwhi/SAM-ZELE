@@ -3,6 +3,7 @@
 <!--Angular Application 선언-->
 <!--ng-app 을 가진 <html> 태그가 Angular.js 어플리케이션의 주인임을 알려주고 하위 모든 요소들도 Angular로 다루어진다.-->
     <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <!--Angular.js 로드하고 난뒤 ng-app 지시어를 찾는다.-->
@@ -14,9 +15,37 @@
         <script src="js/clock.js"></script>
         <!--날씨를 출력해주는 js-->
         <script src="js/weather.js"></script>
-        <script src="js/directions.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="js/google.js"></script>
 
-
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #map-canvas, #map_canvas {
+                height: 50%;
+            }
+            @media print {
+                html, body {
+                    height: auto;
+                }
+                #map_canvas {
+                    height: 650px;
+                }
+            }
+            #panel {
+                position: absolute;
+                top: 5px;
+                left: 50%;
+                margin-left: -100px;
+                z-index: 5;
+                background-color: #fff;
+                padding: 5px;
+                border: 1px solid #123;
+            }
+        </style>
         <script type="text/javascript">
             /* setInterval() 함수는 javascript 내에 내장되어 있는 타이머 함수로,
                         함수 내의 내용들을 지연시간 만큼의 텀으로 계속해서 실행*/
@@ -24,7 +53,6 @@
                 document.getElementById('clock').innerHTML = printClock();
             }, 1000);
         </script>
-
         <!-- Style -->
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/weather-icons.css">
@@ -36,9 +64,15 @@
         <div class="top-left" id="clock"></div>
         <!--오른 쪽 위 날씨-->
         <div class="top-right">
-        <span class="icon-small dimmed wi wi-fw {{currentForecast.wi}}"> </span>
-        <span class="temperature"> {{currentForecast.temperature}}&deg;</span>
+            <span class="icon-small dimmed wi wi-fw {{currentForecast.wi}}"></span>
+            <span class="temperature">{{currentForecast.temperature}}&deg;</span>
         </div>
-        <div class="news_frame">{{currentDirections.distance.text}}</div>
+        <div id="panel">
+            <input type="text" id="end" />
+            <div>
+                <input type="button" value="길찾기" onclick="Javascript:calcRoute();" />
+            </div>
+        </div>
+        <div id="map-canvas"></div>
     </body>
 </html>
