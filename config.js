@@ -14,5 +14,13 @@ var config = {
     },
     googlejavascriptapi:{
         key:"AIzaSyAeWLqJOauaTuMtrzYmREs6soSYpPoWpVI"
-    }
+    }/*,
+    bingmap : {
+        key:"ApPUzTmlr2Q1DM_U0JUbtzjsdyMsC0C4U2nIjFMxBk1VJowKm7biFH8SA5Y3zIcl",
+        mode:"Transit",
+        origin:"Suwon",
+        destination:"Yangjae",
+        name:"SAM",
+        reload_interval:5
+    }*/
 }

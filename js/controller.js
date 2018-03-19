@@ -17,6 +17,21 @@
             }
             refreshMirrorData();
             $interval(refreshMirrorData,1000);
+            /*
+            let refreshBingmapData = function(){
+                BingmapService.getTravelDuration().then(function(durationTraffic){
+                    $scope.traffic = {
+                        name: config.bingmap.name,
+                        origin: config.bingmap.origin,
+                        destination: config.bingmap.destination,
+                        hours: durationTraffic.hours(),
+                        minutes: durationTraffic.minutes()
+                    };
+                });
+            }
+            refreshBingmapData();
+            $interval(refreshBingmapData,1000);
+            */
         }
 
         _this.init();
