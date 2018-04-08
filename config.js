@@ -14,6 +14,9 @@ var config = {
     },
     googlejavascriptapi:{
         key:"AIzaSyAeWLqJOauaTuMtrzYmREs6soSYpPoWpVI"
+    },
+    dust:{
+        key:"614b5851676a736535306658654a6c"
     }/*,
     bingmap : {
         key:"ApPUzTmlr2Q1DM_U0JUbtzjsdyMsC0C4U2nIjFMxBk1VJowKm7biFH8SA5Y3zIcl",
@@ -23,4 +26,7 @@ var config = {
         name:"SAM",
         reload_interval:5
     }*/
+    // 미세먼지 api key
+    // 614b5851676a736535306658654a6c
+    
 }

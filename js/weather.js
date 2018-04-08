@@ -22,6 +22,7 @@
 
             return service.forecast.data.currently;
         }
+        
         return service;
     }
     angular.module('myApp').factory('WeatherService',forecast);

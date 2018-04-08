@@ -70,8 +70,13 @@
         <div class="top-left" id="clock"></div>
         <!--오른 쪽 위 날씨-->
         <div class="top-right">
-            <span class="icon-small dimmed wi wi-fw {{currentForecast.wi}}"></span>
-            <span class="temperature">{{currentForecast.temperature}}&deg;</span>
+            <div>
+                <span class="icon-small dimmed wi wi-fw {{currentForecast.wi}}"></span>
+                <span class="temperature">{{currentForecast.temperature}}&deg;</span>
+            </div>
+            <div>
+                <div> {{dust}} </div>
+            </div>
         </div>
 <!--
         <div id="panel">
