@@ -16,8 +16,14 @@ var config = {
         key:"AIzaSyAeWLqJOauaTuMtrzYmREs6soSYpPoWpVI"
     },
     dust:{
-        key:"614b5851676a736535306658654a6c"
-    }/*,
+        key:"614b5851676a736535306658654a6c",
+        listair:"ListAirQualityByDistrictService",
+        code:"111161"
+    },
+    openweather:{
+        key:"7e683985f05f5a06cc5369405c879421"
+    }
+    /*,
     bingmap : {
         key:"ApPUzTmlr2Q1DM_U0JUbtzjsdyMsC0C4U2nIjFMxBk1VJowKm7biFH8SA5Y3zIcl",
         mode:"Transit",
@@ -25,8 +31,5 @@ var config = {
         destination:"Yangjae",
         name:"SAM",
         reload_interval:5
-    }*/
-    // 미세먼지 api key
-    // 614b5851676a736535306658654a6c
-    
+    }*/    
 }

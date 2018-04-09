@@ -18,8 +18,9 @@
         <!--날씨를 출력해주는 js-->
         <script src="js/weather.js"></script>
         <script src="js/bing.js"></script>
-        <script src="js/dust.js"></script>
+        <script src="js/dusttest.js"></script>
         <script src="js/time.js"></script>
+        <script src="js/dust.js"></script>
 <!--
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
         <script src="js/google.js"></script>
@@ -73,7 +74,8 @@
                 <span class="temperature">{{currentForecast.temperature}}&deg;</span>
             </div>
             <div>
-                <div> {{dust}} </div>
+                <div> {{dust.name}} </div>
+                <div> 미세먼지 : {{dust.pm}} </div>
             </div>
         </div>
 <!--

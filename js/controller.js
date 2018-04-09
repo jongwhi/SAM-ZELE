@@ -24,6 +24,7 @@
                 });
             }
             refreshDustData();
+            $interval(refreshDustData,1000);
             
             let clockData = function(){
                 $scope.clock = ClockService.printClock();
