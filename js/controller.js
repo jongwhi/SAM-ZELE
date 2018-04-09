@@ -1,7 +1,7 @@
 (function(angular){
     'use strict';
     
-    function myCtrl(WeatherService,DustService,$scope,$interval){
+    function myCtrl(WeatherService,DustService,ClockService,$scope,$interval){
         /* $scope
         * view와 controller의 매개체 역할
         * controller을 통해 scope에 model과 function을 정의해두면 view가 그것을 사용한다.
@@ -24,6 +24,12 @@
                 });
             }
             refreshDustData();
+            
+            let clockData = function(){
+                $scope.clock = ClockService.printClock();
+            }
+            clockData();
+            $interval(clockData,1000);
 
             /*
             let refreshBingmapData = function(){

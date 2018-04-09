@@ -18,6 +18,8 @@
         <!--날씨를 출력해주는 js-->
         <script src="js/weather.js"></script>
         <script src="js/bing.js"></script>
+        <script src="js/dust.js"></script>
+        <script src="js/time.js"></script>
 <!--
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
         <script src="js/google.js"></script>
@@ -52,13 +54,6 @@
             }
         </style>
 -->
-        <script type="text/javascript">
-            /* setInterval() 함수는 javascript 내에 내장되어 있는 타이머 함수로,
-                        함수 내의 내용들을 지연시간 만큼의 텀으로 계속해서 실행*/
-            setInterval(function() {
-                document.getElementById('clock').innerHTML = printClock();
-            }, 1000);
-        </script>
         <!-- Style -->
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/weather-icons.css">
@@ -67,7 +62,10 @@
     <body ng-controller="myCtrl">
     <!--body 태그안에 ng-controller을 할당후 매칭되는 js파일에서의 $scope 를 파라미터로 받아처리-->
         <!--왼쪽 위 = 시간-->
-        <div class="top-left" id="clock"></div>
+        <div class="top-left">
+            <span>{{clock.year}}/{{clock.month}}/{{clock.day}} {{clock.date}}</span><br>
+            <span class="hour">{{clock.hour}}:{{clock.minute}} {{clock.ampm}}</span>
+        </div>
         <!--오른 쪽 위 날씨-->
         <div class="top-right">
             <div>

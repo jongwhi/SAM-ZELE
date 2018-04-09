@@ -10,8 +10,11 @@ body {
 /* Displays */
 .top-left{
     float: left;
-    font-size:55px;
+    font-size:30px;
     padding-left: 50px;
+}
+.hour{
+    font-size:55px;
 }
 
 .top-right{
