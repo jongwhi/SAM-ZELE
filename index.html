@@ -23,7 +23,6 @@
         <script src="js/dust.js"></script>
         <!--시간 자릿수 맞춰주는 js-->
         <script src="js/addZeros.js"></script>
-        <script src="js/geolocation.js"></script>
 <!--
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
         <script src="js/google.js"></script>
@@ -75,6 +74,9 @@
             <div>
                 <span class="icon-small dimmed wi wi-fw {{currentForecast.wi}}"></span>
                 <span class="temperature">{{currentForecast.temperature}}&deg;</span>
+            </div>
+            <div>
+                <span>{{weekly[0].day}}</span>
             </div>
             <div>
                 <div> {{dust.name}} </div>

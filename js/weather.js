@@ -6,8 +6,8 @@
         let service = {}; //객체 초기자 , 객체 생성;
         service.forecast = null; //객체 속성 초기화
 
-        service.init = function (geo) {
-            return $http.get('https://api.darksky.net/forecast/'+config.forecast.key+'/'+geo.data.lat+','+geo.data.lon)
+        service.init = function () {
+            return $http.get('https://api.darksky.net/forecast/'+config.forecast.key+'/'+config.geolocation.latitude+','+config.geolocation.longitude)
                 .then(function (response) {
                     return service.forecast = response;
                 });
@@ -21,6 +21,27 @@
             service.forecast.data.currently.wi = "wi-forecast-io-" + service.forecast.data.currently.icon;
 
             return service.forecast.data.currently;
+        }
+        
+        service.weeklyForecast = function(){
+            if(service.forecast === null){
+                return null;
+            }
+            for(var i=0; i<service.forecast.data.daily.data.length; i++){
+                var day = moment.unix(service.forecast.data.daily.data[i].time).format('ddd');
+                if(day == "Mon") service.forecast.data.daily.data[i].day = "월";
+                else if(day == "Tue") service.forecast.data.daily.data[i].day = "화";
+                else if(day == "Wed") service.forecast.data.daily.data[i].day = "수";
+                else if(day == "Thu") service.forecast.data.daily.data[i].day = "목";
+                else if(day == "Fri") service.forecast.data.daily.data[i].day = "금";
+                else if(day == "Sat") service.forecast.data.daily.data[i].day = "토";
+                else if(day == "Sun") service.forecast.data.daily.data[i].day = "일";
+                
+                service.forecast.data.daily.data[i].temperatureMin = parseFloat(service.forecast.data.daily.data[i].temperatureMin).toFixed(1);
+                service.forecast.data.daily.data[i].temperatureMax = parseFloat(service.forecast.data.daily.data[i].temperatureMax).toFixed(1);
+                service.forecast.data.daily.data[i].wi = "wi-forecast-io"+service.forecast.data.daily.data[i].icon;
+            };
+            return service.forecast.data.daily.data;
         }
         
         return service;
