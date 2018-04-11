@@ -6,8 +6,8 @@
         let service = {}; //객체 초기자 , 객체 생성;
         service.forecast = null; //객체 속성 초기화
 
-        service.init = function () {
-            return $http.get('https://api.darksky.net/forecast/'+config.forecast.key+'/'+config.geolocation.latitude+','+config.geolocation.longitude)
+        service.init = function (geo) {
+            return $http.get('https://api.darksky.net/forecast/'+config.forecast.key+'/'+geo.data.lat+','+geo.data.lon)
                 .then(function (response) {
                     return service.forecast = response;
                 });
