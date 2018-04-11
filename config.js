@@ -22,8 +22,7 @@ var config = {
     },
     openweather:{
         key:"7e683985f05f5a06cc5369405c879421"
-    }
-    /*,
+    }/*
     bingmap : {
         key:"ApPUzTmlr2Q1DM_U0JUbtzjsdyMsC0C4U2nIjFMxBk1VJowKm7biFH8SA5Y3zIcl",
         mode:"Transit",
@@ -31,5 +30,6 @@ var config = {
         destination:"Yangjae",
         name:"SAM",
         reload_interval:5
-    }*/    
+    }    
+    */
 }
