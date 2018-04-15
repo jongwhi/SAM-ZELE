@@ -17,8 +17,9 @@ var config = {
     },
     dust:{
         key:"614b5851676a736535306658654a6c",
-        listair:"ListAirQualityByDistrictService",
-        code:"111161"
+        service:"RealtimeCityAir",
+        code:"동북권",
+        name:"도봉구"
     },
     openweather:{
         key:"7e683985f05f5a06cc5369405c879421"

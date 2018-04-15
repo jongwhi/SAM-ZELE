@@ -20,7 +20,7 @@
                 });
             }
             refreshWeatherData();
-            $interval(refreshWeatherData,1000);
+            $interval(refreshWeatherData,360000);
             
             // 미세먼지 출력
             let refreshDustData = function(){
