@@ -23,10 +23,5 @@ var config = {
     },
     openweather:{
         key:"7e683985f05f5a06cc5369405c879421"
-    },
-    aws:{
-        accessKeyId: "AKIAJ4G37ACRX53ZYCVA",
-        secretAccessKey: "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",
-        region: "ap-northeast-1"
     }
 }
