@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
-
 <head>
     <meta charset="utf-8">
 
@@ -11,10 +10,7 @@
     <script src="bower_components/xml2json/xml2json.js"></script>
 
     <script type="text/javascript" src="http://code.responsivevoice.org/responsivevoice.js"></script>
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoPpPBa5798b42gMwYym6wMnSCsUXncHQ&callback=initMap">
-    </script>-->
 
-    <!-- googlemap 길찾기 -->
     <script>
         document.write('<base href="' + document.location + '" />');
     </script>
@@ -28,9 +24,7 @@
     <script type="text/javascript" src="http://openlayers.org/api/2.13.1/OpenLayers.js"></script>
     <script type="text/javascript" src="http://openapi.its.go.kr/javascript/OpenLayers.Layer.Vworld.js"></script>
     <script type="text/javascript" src="http://openapi.its.go.kr/javascript/openapi.ntic.js"></script>
-    
-    <script src="js/traffic.js"></script>
-    <script src="js/calendar.js"></script>
+
     <script src="config.js"></script>
     <script src="js/app.js"></script>
     <script src="js/clock.js"></script>
@@ -40,65 +34,80 @@
     <script src="js/news.js"></script>
     <script src="js/geolocation.js"></script>
     <script src="js/music.js"></script>
+    <script src="js/gmail.js"></script>
     <script src="js/annyang.js"></script>
     <script src="js/annyang-service.js"></script>
     <script src="js/command.js"></script>
     <script src="js/responsive.js"></script>
     <script src="js/controller.js"></script>
-    <script src='https://apis.google.com/js/client.js?onload=handleClientLoad'></script>
+    <script src="js/gmailList.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/traffic.js"></script>
 
     <!-- Style -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/weather-icons.css">
+
 </head>
 
 <body ng-controller="myCtrl">
 
-    <!--왼쪽 위 = 시간-->
-    <div class="top-left">
-        {{clock.year}}/{{clock.month}}/{{clock.day}} {{clock.date}}<br>
-        <span class="hour">{{clock.hour}}:{{clock.minute}} {{clock.ampm}}</span>
-        <!-- 일정 -->
-        <div id='content'><br><br>
-            <span id='calendar'>LOADING . . . .</span>
-            <ul class='schedule' id='events'></ul>
+<!--왼쪽 위 = 시간-->
+<div class="top-left">
+    {{clock.year}}/{{clock.month}}/{{clock.day}} {{clock.date}}<br>
+    <span class="hour">{{clock.hour}}:{{clock.minute}} {{clock.ampm}}</span>
+</div>
+
+<!--오른 쪽 위 날씨-->
+<div class="top-right">
+    <span class="summary">Today's Weather </span> <br><br>
+    <div class="dust">
+        <div> 미세먼지 : {{dust.pm}}</div>
+        <br>
+    </div>
+    <span class="icon-big dimmed wi wi-fw {{currentForecast.wi}}"> </span>
+    <span class="temperature"> {{currentForecast.temperature}}&deg;</span><br>
+    <!-- 주간 날씨 -->
+    <div class="animate-grow">
+        <div ng-repeat="weekWeather in weekly" ng-if="7>$index >0">
+            <span>{{weekWeather.day}}</span>
+            <span class="icon-small dimmed wi wi-fw {{weekWeather.wi}}"></span>
+            <span>{{weekWeather.temperatureMin}}&deg; / </span>
+            <span>{{weekWeather.temperatureMax}}&deg;</span>
         </div>
     </div>
+</div>
 
-    <!--오른 쪽 위 날씨-->
-    <div class="top-right">
-        <span class="summary">___오늘의 날씨___</span> <br><br>
-        <span class="icon-big dimmed wi wi-fw {{currentForecast.wi}}"> </span>
-        <span class="temperature"> {{currentForecast.temperature}}&deg;</span><br>
-        <div class="dust">
-            <div> 미세먼지 : {{dust.pm}} </div><br><br>
+
+<!-- 가운데 -->
+<div class="container">
+    <br><br><br><br><br><br><br><br><br><br>
+
+    <!--<div class="bottom-left">
+     &lt;!&ndash;Calendar&ndash;&gt;
+    <fieldset>
+        <legend>Calendar</legend>
+        <div ng-repeat="list in calendar" ng-if="5>$index >0">
+            {{list.start.dateTime || list.start.date}} -  {{list.summary}}
+            &lt;!&ndash;{{list.start.dateTime || list.start.date}} -  {{list.summary}}&ndash;&gt;
         </div>
-        <!-- 주간 날씨 -->
-        <div class="weather-week" style='line-height:180%'>
-            <div ng-repeat="weekWeather in weekly" ng-if="7> $index >0">
-                <span class="weather-weekday">{{weekWeather.day}}</span>
-                <span class="icon-small dimmed wi wi-fw {{weekWeather.wi}}">　　</span>
-                <span class="weather-weektempreture">{{weekWeather.temperatureMin}}&deg; /</span>
-                <span class="weather-weektempreture">{{weekWeather.temperatureMax}}&deg;</span>
+    </fieldset>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    &lt;!&ndash;Gmail&ndash;&gt;
+
+        <fieldset>
+            <legend>Gmail</legend>
+            {{message}}
+        </fieldset>
+    </div>-->
+
+    <div class="middle-center">
+
+        <div style="margin:auto" ng-show="focus=='traffic'">
+            <div id="traffic" >
+            {{traffic}}
             </div>
         </div>
-    </div>
-
-
-    <!-- 가운데 -->
-    <div class="container">
-        <br><br><br><br><br><br><br><br><br><br>
-
-        <!-- 웹캠 -->
-        <!--<div id="camdemo" style="width: 320px; height: 240px; text-align: center; margin: 0 auto;"></div><br>
-        <div style="text-align:center;">
-            <input type="button" id="savefile" onclick="savephoto()" value="Save photo in Desktop" />
-            <script type="text/jscript" src="js/webcam.js"></script><br>
-            <img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-        </div>-->
-        <!-- 교통상황 -->
-        <div id="map" style="width:600px; height:500px;"></div>
-
         <!-- 뉴스 -->
         <div class="news_frame animate-grow" ng-show="focus =='news'">
             <div ng-repeat="article in currentNews.articles" ng-if='5>$index >0'>
@@ -110,56 +119,55 @@
         </div>
         <!-- 영상 -->
         <div class="contents-box animate-grow" ng-show="focus=='music'">
-            <iframe id="youtube_player" class="yt_player_iframe" width="100%" ng-src="{{currentYoutubeUrl}}" allowfullscreen="true" allowscriptaccess="always" frameborder="0"></iframe>
+            <iframe id="youtube_player" class="yt_player_iframe" width="100%"
+                    ng-src="{{currentYoutubeUrl}}" allowfullscreen="true"
+                    allowscriptaccess="always" frameborder="0">
+            </iframe>
         </div>
+
         <!-- 길찾기 -->
-        <!--<div class="panel-body" >
+        <div class="panel-body" ng-show="focus=='direction'">
+            <div class="interim-result" ng-bind="destination" ng-model="directions.destination"></div>
             <google-map control="map.control" center="map.center" zoom="map.zoom">
                 <marker coords="marker.center"></marker>
             </google-map>
-            <div id="directionsList" ng-show="directions.showList" class="panel panel-primary"></div>
-            <div class="form-group">
-                <label for="destination" class="col-sm-2 control-label">Destination</label>
-                <div class="col-sm-8">
-                    <input type="text" id="destination" class="form-control" ng-model="directions.destination" />
-                    <button class="btn btn-primary" ng-click="getDirections()">Get Directions</button>
-                </div>
-            </div>
-        </div>-->
-
-        <div class="middle-center">
-            <!-- 안녕 Zele -->
-            <div class="animate-grow" ng-show="focus=='default'">
-                <h1>{{complement}}</h1>
-            </div>
-
-            <!-- 인사 -->
-            <h2 class="animate-grow" ng-show="focus=='name'">반가워요 {{user.name}}님(o^^o)</h2>
+            <div id="directionsList" ng-show="showList" class="panel panel-primary"></div>
         </div>
 
-        <div class="bottom-center">
-            <div class="commands animate-grow" ng-show="focus == 'commands'">
-                <h2>사용 가능한 질문</h2>
-                <dl>
-                    <dt>사용 가능한 질문</dt>
-                    <dt>"홈으로,메인화면" </dt>
-                    <dt>"안녕 SAM" </dt>
-                    <dt>"나는 00 야" </dt>
-                    <dt>"잘 자 SAM" </dt>
-                    <dt>"뉴스 보여줘" </dt>
-                    <dt>"영상/음악 틀어줘" </dt>
-                    <dt>"오늘 날씨 어때?"</dt>
-                </dl>
-            </div>
-        </div>
+        <!-- 안녕 Zele -->
+        <div class="animate-grow" ng-show="focus=='default'">
+            <h1>{{complement}}</h1>
 
-        <!-- 인식글 -->
-        <div class="interim-result" ng-bind="interimResult"></div><br>
+        </div>
+        <!-- 인사 -->
+        <h2 class="animate-grow" ng-show="focus=='name'">반가워요 {{user.name}}님(o^^o)</h2>
     </div>
 
-    <!-- 잠자러가 -->
-    <div ng-show="focus == 'sleep'" class="sleep-cover fade"></div>
+    <div class="bottom-center">
+        <div class="commands animate-grow" ng-show="focus == 'commands'">
+            <h2>사용 가능한 질문</h2>
+            <dl>
+                <dt>사용 가능한 질문</dt>
+                <dt>"홈으로,메인화면"</dt>
+                <dt>"안녕 SAM"</dt>
+                <dt>"나는 00 야"</dt>
+                <dt>"잘 자 SAM"</dt>
+                <dt>"뉴스 보여줘"</dt>
+                <dt>"영상/음악 틀어줘"</dt>
+                <dt>"오늘 날씨 어때?"</dt>
+            </dl>
+        </div>
+    </div>
+
+
+    <!-- 인식글 -->
+    <div class="interim-result" ng-bind="interimResult"></div>
+
+</div>
+
+
+<!-- 잠자러가 -->
+<div ng-show="focus == 'sleep'" class="sleep-cover fade"></div>
 
 </body>
-
 </html>

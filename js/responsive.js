@@ -45,53 +45,6 @@ var FUNCTIONSERVICE = {
             responsiveVoice.speak("영상을 종료합니다.", "Korean Female");
         }
     },
-    
-    route: function ($scope, $document, term) { //~까지 어떻게 가
-        console.log(term);
-        $scope.focus = "route";
-        //$scope.directions.destination = term;
-        
-        $scope.map = {
-                    control: {},
-                    center: {
-                        latitude: 37.588442,
-                        longitude: 127.006197
-                    },
-                    zoom: 15
-                };
-
-                $scope.marker = {
-                    center: {
-                        latitude: 37.588442,
-                        longitude: 127.006197
-                    }
-                };
-
-                // instantiate google map objects for directions
-                var directionsDisplay = new google.maps.DirectionsRenderer();
-                var directionsService = new google.maps.DirectionsService();
-                var geocoder = new google.maps.Geocoder();
-
-                // get directions using google maps api
-                $scope.getDirections = function (term) {
-                    var request = {
-                        origin: new google.maps.LatLng(37.588442, 127.006197),
-                        destination: document.getElementById('destination').value,
-                        provideRouteAlternatives: true,
-                        travelMode: eval("google.maps.DirectionsTravelMode.TRANSIT")
-                    };
-                    directionsService.route(request, function (response, status) {
-                        if (status === google.maps.DirectionsStatus.OK) {
-                            directionsDisplay.setDirections(response);
-                            directionsDisplay.setMap($scope.map.control.getGMap());
-                            directionsDisplay.setPanel(document.getElementById('directionsList'));
-                            $scope.directions.showList = true;
-                        } else {
-                            alert('Google route unsuccesfull!');
-                        }
-                    });
-                }
-    },
 
 
 
@@ -114,7 +67,7 @@ var FUNCTIONSERVICE = {
         WeatherService.init().then(function () {
             var currentForecast = WeatherService.currentForecast();
             var dust = DustService.dustForecast();
-
+            
             if (responsiveVoice.voiceSupport()) {
                 if (currentForecast.temperature < 10 && dresponsiveVoice.voiceSupport()) {
                     responsiveVoice.speak("현재 기온이 10도 이하로 쌀쌀하니,  따듯하게 입으세요!", "Korean Female");
@@ -123,7 +76,13 @@ var FUNCTIONSERVICE = {
                 }
             }
         });
+    },
+
+    traffic : function($scope,TrafficServcie){
+        $scope.traffic=TrafficServcie;
+        $scope.focus="traffic";
     }
+
 
 
 }

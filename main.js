@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow;
 var win //(변수화)
 
 function createWindow () { // createWindow() 함수
-    win = new BrowserWindow({width: 800, height: 600, //kiosk:true, 
+    win = new BrowserWindow({width: 800, height: 600, //kiosk:true,
                              autoHideMenuBar:true})
     // kiosk : 전체화면 설정 , autoHideMenuBar : 메뉴바 숨기기 설정
 

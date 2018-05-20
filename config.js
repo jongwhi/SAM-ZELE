@@ -2,22 +2,9 @@ var config = {
     forecast : {
         key:"a21a1a7167d9ed291cded7f6fd503e01"
     },
-    
-    googlemap : {
-        key : "AIzaSyBLtNK_2rfl0XzePjji2WKo2PlIuBdTeNk"
-    },
-    
-    direction:{
-        key:"AIzaSyArYLp5ECXNDMMG6kKTHrvO1gEYimBxx5g"
-    },
-    
-    googlejavascriptapi:{
-        key:"AIzaSyAeWLqJOauaTuMtrzYmREs6soSYpPoWpVI"
-    },
-    
     geolocation : {
-        latitude : "37.588442",
-        longitude:"127.006197"
+        latitude : "37.541",
+        longitude:"126.986"
     },
 
     dust:{
@@ -32,9 +19,5 @@ var config = {
 
     youtube : {
         key:"AIzaSyB7cQt5ML147cjCmT30NGFVnMW6QNRFAJ4"
-    },
-    
-    calendar : {
-        key:"AIzaSyB9lH2Q94i1eYdSCqsNgFWDkWT3zO1gwQ8"
     }
 }

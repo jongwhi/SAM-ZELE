@@ -39,8 +39,8 @@
                 else if(day == "Sat") service.forecast.data.daily.data[i].day = "토";
                 else if(day == "Sun") service.forecast.data.daily.data[i].day = "일";
 
-                service.forecast.data.daily.data[i].temperatureMin =addZeros( parseInt((service.forecast.data.daily.data[i].temperatureMin-32)/1.8).toFixed(0),2);
-                service.forecast.data.daily.data[i].temperatureMax =addZeros( parseInt((service.forecast.data.daily.data[i].temperatureMax-32)/1.8).toFixed(0),2);
+                service.forecast.data.daily.data[i].temperatureMin = parseInt((service.forecast.data.daily.data[i].temperatureMin-32)/1.8).toFixed(0);
+                service.forecast.data.daily.data[i].temperatureMax = parseInt((service.forecast.data.daily.data[i].temperatureMax-32)/1.8).toFixed(0);
                 service.forecast.data.daily.data[i].wi = "wi-forecast-io-"+service.forecast.data.daily.data[i].icon;
             };
             return service.forecast.data.daily.data;

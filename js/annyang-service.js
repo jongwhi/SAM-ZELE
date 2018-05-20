@@ -48,6 +48,7 @@
         return service;
     }
 
-    angular.module('myApp').factory('AnnyangService', AnnyangService);
+    angular.module('myApp')
+        .factory('AnnyangService', AnnyangService);
 
 }(window.annyang));

@@ -33,7 +33,7 @@
             }else if(currentDate2 == 5){
                 currentDate2 = "금요일"
             }else if(currentDate2 == 6){
-                currentDate2 = "토요일"
+                currentDate2 = "토요"
             }
 
             service.clock.year = currentYear;
@@ -46,7 +46,16 @@
 
             return service.clock; //날짜를 출력해 줌
         }
-        
+        service.addZeors= function(num,digit) { // 자릿수 맞춰주기
+            let zero = '';
+            num = num.toString();
+            if (num.length < digit) {
+                for (let i = 0; i < digit - num.length; i++) {
+                    zero += '0';
+                }
+            }
+            return zero + num;
+        }
         return service;
     }
 

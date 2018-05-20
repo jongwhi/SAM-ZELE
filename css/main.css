@@ -7,42 +7,29 @@ body {
     text-align: center;
 }
 
-/** Google Map **/
-.angular-google-map-container {
-    height: 300px;
-    width:400px;
-}
-
-.panel-primary {
-    height: 220px;
-    width:400px;
-    overflow: hidden;
-}
-
 /** Displays **/
-.top-left {
+.top-left{
     float: left;
-    font-size: 30px;
+    font-size:30px;
     padding-top: 30px;
     padding-left: 50px;
 }
 
-.top-right {
+.top-right{
     float: right;
     padding-top: 30px;
     padding-top: 30px;
     padding-right: 50px;
 }
 
-.middle-right {
+.middle-right{
     float: right;
     padding-top: 250px;
     padding-right: 50px;
 }
 
 .container {
-    z-index: -1;
-    /* so things are still selectable */
+    z-index: -1; /* so things are still selectable */
     position: fixed;
     top: 0;
     left: 0;
@@ -50,10 +37,8 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    text-align: center;
+    /*align-items: center;
+    justify-content: center;*/
 }
 
 .middle-center {
@@ -74,6 +59,14 @@ body {
     margin-bottom: 20px;
 }
 
+.bottom-left{
+    font-family: 'Open Sans', sans-serif;
+    width: 30%;
+    text-align: left;
+    padding-left:50px;
+    padding-top: 20px;
+}
+
 .commands {
     width: 450px;
     text-align: left;
@@ -82,18 +75,12 @@ body {
 }
 
 /** clock **/
-.hour {
-    font-size: 50px;
-}
-
-/** schedule **/
-.schedule {
-    text-align: left;
-    line-height: 70%;
+.hour{
+    font-size:50px;
 }
 
 /** weather **/
-.summary {
+.summary{
     font-size: 30px;
 }
 
@@ -105,10 +92,10 @@ body {
     padding-right: -10px;
     font-weight: 100;
     width: 20px;
-    color: white;
+    color : white;
 }
 
-.temperature {
+.temperature{
     font-size: 50px;
 }
 
@@ -119,77 +106,82 @@ body {
     padding-left: 0px;
     padding-right: -10px;
     font-weight: 100;
-    width: 23px;
-    color: white;
+    width: 20px;
+    color : white;
 }
 
 .weather-week-descriptor {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     margin-left: auto;
     margin-bottom: 5px;
+    text-align: right;
 
 }
 
 .weather-week {
+    font-size: 12px;
+    /* add 3/28 Mon. */
+    color: white;
     border-radius: 5px;
     margin-top: 3px;
     margin-left: 10px;
+    background : linear-gradient(to right, #7D7D7D, #7F7F7F);
 }
 
-.weather-weekday {
+.weather-week .day {
     display: inline-block;
     margin-right: 8px;
     width: 30px;
     font-size: 18px;
-    /* add 3/28 Mon. */
+
+/* add 3/28 Mon. */
     color: white;
 }
 
-.weather-weektempreture {
+.weather-week .tempreture {
     display: inline-block;
+    width: 30px;
     font-size: 18px;
 }
 
 /** 미세먼지 **/
-.dust {
+.dust{
     font-size: 18px;
     padding-top: 8px;
 }
 
 /** news **/
-.news_frame {
-    width: 800px;
-    height: 520px;
+.news_frame{
+    width:800px;
+    height:520px;
     border-style: solid;
     border-width: 2px;
     border-color: #fff;
     border-radius: 5px;
-    margin: auto;
+    margin : auto;
     padding-top: 20px;
     clear: both;
 }
-
-.news_image {
-    width: 80px;
-    height: 80px;
+.news_image{
+    width:80px ;
+    height:80px;
     padding-left: 20px;
     padding-right: 20px;
-    float: left;
+    float:left;
 }
-
-.news_title {
+.news_title{
     font-size: 15px;
     font-weight: bold;
 }
 
-.news_des {
+.news_des{
     font-size: 12px;
 
 }
 
 /** Youtube IFRAME **/
-.yt_player_iframe {
+.yt_player_iframe{
     width: 600px;
     height: 300px;
 }
@@ -201,10 +193,24 @@ body {
     overflow: hidden;
 }
 
+/** Google Map **/
+.angular-google-map-container {
+    height: 300px;
+    width:400px;
+}
+
+.panel-primary {
+    height: 220px;
+    width:400px;
+    overflow: hidden;
+}
+.panel-body{
+    margin : auto;
+}
 /* traffic*/
-#map {
-    height: 60%;
-    width: 40%;
+#traffic {
+    height: 500px;
+    width: 600px;
     margin: auto;
 
 }
@@ -223,7 +229,7 @@ body {
 }
 
 .animate-grow.ng-hide {
-    max-height: 0 !important;
+    max-height: 0  !important;
 }
 
 .sleep-cover {
