@@ -3,12 +3,12 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 //! annyang
-//! version : 2.6.0
+//! version : 2.6.1
 //! author  : Tal Ater @TalAter
 //! license : MIT
 //! https://www.TalAter.com/annyang/
 (function (root, factory) {
-  "use strict";
+  'use strict';
 
   if (typeof define === 'function' && define.amd) {
     // AMD + global
@@ -23,7 +23,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     root.annyang = factory(root);
   }
 })(typeof window !== 'undefined' ? window : undefined, function (root, undefined) {
-  "use strict";
+  'use strict';
 
   /**
    * # Quick Tutorial, Intro and Demos

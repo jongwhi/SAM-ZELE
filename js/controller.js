@@ -14,6 +14,36 @@
                     $scope, $interval, $timeout, $sce) {
 
         let _this = this;
+        var AWS = require('aws-sdk');
+        var rekognition = new AWS.Rekognition({
+            accessKeyId: "",
+            secretAccessKey: "",
+            region: "ap-northeast-1"
+        });
+        var params = {
+            SourceImage:{    
+                S3Object : {
+                    Bucket: "zele-seon",
+                    Name : "seon1.jpg"
+                }
+            },
+            TargetImage:{
+                S3Object:{
+                    Bucket: "zele-seon",
+                    Name: "seon2.jpg"
+                }
+            },
+            SimilarityThreshold : 0.0
+        };
+        $scope.rekog = rekognition.compareFaces(params, function(err, data){
+            if(err){
+                console.log(err, err.stack);
+                return err;
+            } else {
+                console.log(data.FaceMatches[0].Similarity);
+                return data.FaceMatches[0].Similarity;
+            }
+        });
         var command = COMMANDS.ko;
         var DEFAULT_COMMAND_TEXT = command.default;
         var functionService = FUNCTIONSERVICE;
