@@ -41,7 +41,7 @@
                 return err;
             } else {
                 console.log(data.FaceMatches[0].Similarity);
-                return data.FaceMatches[0].Similarity;
+                return data.FaceMatches[0];
             }
         });
         var command = COMMANDS.ko;

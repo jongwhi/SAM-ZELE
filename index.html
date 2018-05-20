@@ -56,15 +56,14 @@
 <div class="top-left">
     {{clock.year}}/{{clock.month}}/{{clock.day}} {{clock.date}}<br>
     <span class="hour">{{clock.hour}}:{{clock.minute}} {{clock.ampm}}</span>
-    <br>
-    <div>{{rekog}}</div>
+
 </div>
 
 <!--오른 쪽 위 날씨-->
 <div class="top-right">
     <span class="summary">Today's Weather </span> <br><br>
     <div class="dust">
-        <div> 미세먼지 : {{dust.pm}}</div>
+        <div> 미세먼지 : {{dust.pm}} / {{rekog.Similarity}}</div>
         <br>
     </div>
     <span class="icon-big dimmed wi wi-fw {{currentForecast.wi}}"> </span>
