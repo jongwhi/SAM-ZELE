@@ -2,38 +2,102 @@ body {
     background-color: black;
     color: #fff;
     font-family: Courier New;
-    /*font-family: "HelveticaNeue-UltraLight",'myfont-ttf','HelveticaNeue-UltraLight', 'Open Sans', sans-serif;*/
     font-weight: 100;
     position: relative;
+    text-align: center;
 }
 
-/* Displays */
-.top-left{
+/** Google Map **/
+.angular-google-map-container {
+    height: 300px;
+    width:400px;
+}
+
+.panel-primary {
+    height: 220px;
+    width:400px;
+    overflow: hidden;
+}
+
+/** Displays **/
+.top-left {
     float: left;
-    font-size:30px;
+    font-size: 30px;
+    padding-top: 30px;
     padding-left: 50px;
 }
-.hour{
-    font-size:55px;
-}
 
-.top-right{
+.top-right {
     float: right;
+    padding-top: 30px;
     padding-top: 30px;
     padding-right: 50px;
 }
 
-.center{
-    padding-top: 80px;
-    clear: both;
+.middle-right {
+    float: right;
+    padding-top: 250px;
+    padding-right: 50px;
+}
+
+.container {
+    z-index: -1;
+    /* so things are still selectable */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+
+.middle-center {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+    align-self: flex-start;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.bottom-center {
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.commands {
+    width: 450px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/** clock **/
+.hour {
+    font-size: 50px;
+}
+
+/** schedule **/
+.schedule {
+    text-align: left;
+    line-height: 70%;
 }
 
 /** weather **/
-.summary{
-    font-size: 20px;
+.summary {
+    font-size: 30px;
 }
 
-.icon-small {
+.icon-big {
     position: relative;
     display: inline-block;
     font-size: 50px;
@@ -41,8 +105,151 @@ body {
     padding-right: -10px;
     font-weight: 100;
     width: 20px;
-    color : white;
+    color: white;
 }
-.temperature{
-    font-size: 40px;
+
+.temperature {
+    font-size: 50px;
+}
+
+.icon-small {
+    position: relative;
+    display: inline-block;
+    font-size: 25px;
+    padding-left: 0px;
+    padding-right: -10px;
+    font-weight: 100;
+    width: 23px;
+    color: white;
+}
+
+.weather-week-descriptor {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    margin-left: auto;
+    margin-bottom: 5px;
+
+}
+
+.weather-week {
+    border-radius: 5px;
+    margin-top: 3px;
+    margin-left: 10px;
+}
+
+.weather-weekday {
+    display: inline-block;
+    margin-right: 8px;
+    width: 30px;
+    font-size: 18px;
+    /* add 3/28 Mon. */
+    color: white;
+}
+
+.weather-weektempreture {
+    display: inline-block;
+    font-size: 18px;
+}
+
+/** 미세먼지 **/
+.dust {
+    font-size: 18px;
+    padding-top: 8px;
+}
+
+/** news **/
+.news_frame {
+    width: 800px;
+    height: 520px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #fff;
+    border-radius: 5px;
+    margin: auto;
+    padding-top: 20px;
+    clear: both;
+}
+
+.news_image {
+    width: 80px;
+    height: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    float: left;
+}
+
+.news_title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.news_des {
+    font-size: 12px;
+
+}
+
+/** Youtube IFRAME **/
+.yt_player_iframe {
+    width: 600px;
+    height: 300px;
+}
+
+.contents-box {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* traffic*/
+#map {
+    height: 60%;
+    width: 40%;
+    margin: auto;
+
+}
+
+/** animation **/
+.animate-grow {
+    max-height: 1280px !important;
+}
+
+.animate-grow.ng-hide-add {
+    transition: all linear 500ms;
+}
+
+.animate-grow.ng-hide-remove {
+    transition: all linear 500ms;
+}
+
+.animate-grow.ng-hide {
+    max-height: 0 !important;
+}
+
+.sleep-cover {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.fade.ng-hide {
+    opacity: 0;
+}
+
+.fade.ng-hide-remove,
+
+.fade.ng-hide-add {
+    display: block !important;
+}
+
+.fade.ng-hide-remove {
+    transition: all ease 1500ms;
+}
+
+.fade.ng-hide-add {
+    transition: all ease 500ms;
 }

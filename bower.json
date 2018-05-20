@@ -1,0 +1,26 @@
+{
+    "name": "sam_example",
+    "description": "sam_example",
+    "main": "main.js",
+    "authors": [
+    "mwoo526 <mwoo526@naver.com>"
+  ],
+    "license": "ISC",
+    "homepage": "",
+    "private": true,
+    "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+    "dependencies": {
+        "jquery": "^3.3.1",
+        "angular": "^1.6.9",
+        "angular-animate": "^1.6.9",
+        "angular-google-maps": "~2.0.1",
+        "moment": "^2.21.0",
+        "xml2json": "^1.1.1"
+    }
+}

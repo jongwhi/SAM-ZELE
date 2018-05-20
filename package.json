@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "angular": "^1.6.9",
-    "aws-sdk": "^2.238.1",
+    "annyang": "^2.6.0",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
     "forecast": "^0.3.2",
-    "node-rekognition": "^0.3.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "webcamjs": "^1.0.25"
   }
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://code.responsivevoice.org/responsivevoice.js"></script>
+    <script>
+        function speakText(){
+            var text=document.getElementById('text').value;
+            responsiveVoice.setDefaultVoice("Korean Female");
+            responsiveVoice.speak(text);
+        }
+    </script>
+</head>
+<body>
+Text To Speech <hr/>
+<textarea id="text" rows="5" cols="100"></textarea>
+<input onclick="speakText();" type="button" value="Speak">
+
+</body>
+</html>

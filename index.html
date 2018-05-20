@@ -1,138 +1,165 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
-<!--Angular Application 선언-->
-<!--ng-app 을 가진 <html> 태그가 Angular.js 어플리케이션의 주인임을 알려주고 하위 모든 요소들도 Angular로 다루어진다.-->
-    <head>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.min.js" charset="utf-8"></script>
-        <!--Angular.js 로드하고 난뒤 ng-app 지시어를 찾는다.-->
 
-        <script src="js/app.js"></script>
-        <script src="js/controller.js"></script>
-        <script src="config.js"></script>
-        <!--시간을 출력해주는 js-->
-        <script src="js/clock.js"></script>
-        <!--날씨를 출력해주는 js-->
-        <script src="js/weather.js"></script>
-        <!--길찾기 서비스
-        <script src="js/bing.js"></script>-->
-        <!--미세먼지 api-->
-        <script src="js/dust.js"></script>
-        <!--시간 자릿수 맞춰주는 js-->
-        <script src="js/addZeros.js"></script>
-        <script src="js/geolocation.js"></script>
+<head>
+    <meta charset="utf-8">
 
-        <!--
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-        <script src="js/google.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/xml2json/xml2json.js"></script>
 
+    <script type="text/javascript" src="http://code.responsivevoice.org/responsivevoice.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBoPpPBa5798b42gMwYym6wMnSCsUXncHQ&callback=initMap">
+    </script>-->
 
-        <style type="text/css">
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            #map-canvas, #map_canvas {
-                height: 50%;
-            }
-            @media print {
-                html, body {
-                    height: auto;
-                }
-                #map_canvas {
-                    height: 650px;
-                }
-            }
-            #panel {
-                position: absolute;
-                top: 5px;
-                left: 50%;
-                margin-left: -100px;
-                z-index: 5;
-                background-color: #fff;
-                padding: 5px;
-                border: 1px solid #123;
-            }
-        </style>
--->
-        <!-- Style -->
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/weather-icons.css">
-    </head>
+    <!-- googlemap 길찾기 -->
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+    <script data-require="google-maps@1.0.0" data-semver="1.0.0" src="http://maps.google.com/maps/api/js?key=AIzaSyB9lH2Q94i1eYdSCqsNgFWDkWT3zO1gwQ8&v=3.exp&sensor=false"></script>
+    <script data-require="angular.js@1.2.x" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js" data-semver="1.2.17"></script>
+    <script data-require="lodash-underscore@*" data-semver="2.4.1" src="https://rawgit.com/lodash/lodash/2.4.1/dist/lodash.underscore.min.js"></script>
+    <script data-require="angular-google-maps@*" data-semver="1.1.4" src="https://rawgit.com/nlaplante/angular-google-maps/1.1.4/dist/angular-google-maps.min.js"></script>
+
+    <!-- 교통정보 -->
+    <script type="text/javascript" src="http://openapi.its.go.kr/javascript/jquery.xml2json.js"></script>
+    <script type="text/javascript" src="http://openlayers.org/api/2.13.1/OpenLayers.js"></script>
+    <script type="text/javascript" src="http://openapi.its.go.kr/javascript/OpenLayers.Layer.Vworld.js"></script>
+    <script type="text/javascript" src="http://openapi.its.go.kr/javascript/openapi.ntic.js"></script>
     
-    <body ng-controller="myCtrl">
-    <!--body 태그안에 ng-controller을 할당후 매칭되는 js파일에서의 $scope 를 파라미터로 받아처리-->
-        <!--왼쪽 위 = 시간-->
-        <div class="top-left">
-            <span>{{clock.year}}/{{clock.month}}/{{clock.day}} {{clock.date}}</span><br>
-            <span class="hour">{{clock.hour}}:{{clock.minute}} {{clock.ampm}}</span>
+    <script src="js/traffic.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="config.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/addZero.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/dust.js"></script>
+    <script src="js/news.js"></script>
+    <script src="js/geolocation.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/annyang.js"></script>
+    <script src="js/annyang-service.js"></script>
+    <script src="js/command.js"></script>
+    <script src="js/responsive.js"></script>
+    <script src="js/controller.js"></script>
+    <script src='https://apis.google.com/js/client.js?onload=handleClientLoad'></script>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/weather-icons.css">
+</head>
+
+<body ng-controller="myCtrl">
+
+    <!--왼쪽 위 = 시간-->
+    <div class="top-left">
+        {{clock.year}}/{{clock.month}}/{{clock.day}} {{clock.date}}<br>
+        <span class="hour">{{clock.hour}}:{{clock.minute}} {{clock.ampm}}</span>
+        <!-- 일정 -->
+        <div id='content'><br><br>
+            <span id='calendar'>LOADING . . . .</span>
+            <ul class='schedule' id='events'></ul>
         </div>
-        <!--오른 쪽 위 날씨-->
-        <div class="top-right">
-            <div>
-                <span class="icon-small dimmed wi wi-fw {{currentForecast.wi}}"></span>
-                <span class="temperature">{{currentForecast.temperature}}&deg;</span>
-            </div>
-            <div>
-                <span>{{weekly[0].day}}</span>
-                <span class="icon-small dimmed wi wi-fw {{weekly[0].wi}}"></span>
-                <span>{{weekly[0].temperatureMin}}&deg;</span>
-                <span>{{weekly[0].temperatureMax}}&deg;</span>
-            </div>
-            <div>
-                <span>{{weekly[1].day}}</span>
-                <span class="icon-small dimmed wi wi-fw {{weekly[1].wi}}"></span>
-                <span>{{weekly[1].temperatureMin}}&deg;</span>
-                <span>{{weekly[1].temperatureMax}}&deg;</span>
-            </div>
-            <div>
-                <span>{{weekly[2].day}}</span>
-                <span class="icon-small dimmed wi wi-fw {{weekly[2].wi}}"></span>
-                <span>{{weekly[2].temperatureMin}}&deg;</span>
-                <span>{{weekly[2].temperatureMax}}&deg;</span>
-            </div>
-            <div>
-                <span>{{weekly[3].day}}</span>
-                <span class="icon-small dimmed wi wi-fw {{weekly[3].wi}}"></span>
-                <span>{{weekly[3].temperatureMin}}&deg;</span>
-                <span>{{weekly[3].temperatureMax}}&deg;</span>
-            </div>
-            <div>
-                <span>{{weekly[4].day}}</span>
-                <span class="icon-small dimmed wi wi-fw {{weekly[4].wi}}"></span>
-                <span>{{weekly[4].temperatureMin}}&deg;</span>
-                <span>{{weekly[4].temperatureMax}}&deg;</span>
-            </div>
-            <div>
-                <span>{{weekly[5].day}}</span>
-                <span class="icon-small dimmed wi wi-fw {{weekly[5].wi}}"></span>
-                <span>{{weekly[5].temperatureMin}}&deg;</span>
-                <span>{{weekly[5].temperatureMax}}&deg;</span>
-            </div>
-            <div>
-                <span>{{weekly[6].day}}</span>
-                <span class="icon-small dimmed wi wi-fw {{weekly[6].wi}}"></span>
-                <span>{{weekly[6].temperatureMin}}&deg;</span>
-                <span>{{weekly[6].temperatureMax}}&deg;</span>
-            </div>
-            <div>
-                <div> {{dust.name}} </div>
-                <div> 미세먼지 : {{dust.pm}} </div>
-                <div> 미세먼지 : {{dust.msg}} </div>
+    </div>
+
+    <!--오른 쪽 위 날씨-->
+    <div class="top-right">
+        <span class="summary">___오늘의 날씨___</span> <br><br>
+        <span class="icon-big dimmed wi wi-fw {{currentForecast.wi}}"> </span>
+        <span class="temperature"> {{currentForecast.temperature}}&deg;</span><br>
+        <div class="dust">
+            <div> 미세먼지 : {{dust.pm}} </div><br><br>
+        </div>
+        <!-- 주간 날씨 -->
+        <div class="weather-week" style='line-height:180%'>
+            <div ng-repeat="weekWeather in weekly" ng-if="7> $index >0">
+                <span class="weather-weekday">{{weekWeather.day}}</span>
+                <span class="icon-small dimmed wi wi-fw {{weekWeather.wi}}">　　</span>
+                <span class="weather-weektempreture">{{weekWeather.temperatureMin}}&deg; /</span>
+                <span class="weather-weektempreture">{{weekWeather.temperatureMax}}&deg;</span>
             </div>
         </div>
-<!--
-        <div id="panel">
-            <input type="text" id="end"/>
-            <div>
-                <input type="button" value="길찾기" onclick="Javascript:calcRoute();" />
+    </div>
+
+
+    <!-- 가운데 -->
+    <div class="container">
+        <br><br><br><br><br><br><br><br><br><br>
+
+        <!-- 웹캠 -->
+        <!--<div id="camdemo" style="width: 320px; height: 240px; text-align: center; margin: 0 auto;"></div><br>
+        <div style="text-align:center;">
+            <input type="button" id="savefile" onclick="savephoto()" value="Save photo in Desktop" />
+            <script type="text/jscript" src="js/webcam.js"></script><br>
+            <img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+        </div>-->
+        <!-- 교통상황 -->
+        <div id="map" style="width:600px; height:500px;"></div>
+
+        <!-- 뉴스 -->
+        <div class="news_frame animate-grow" ng-show="focus =='news'">
+            <div ng-repeat="article in currentNews.articles" ng-if='5>$index >0'>
+                <image class="news_image" src="{{article.image}}"></image>
+                <div class="news_title">{{article.title}}</div>
+                <div class="news_des">{{article.des}}</div>
+                <br><br><br>
             </div>
         </div>
-        <div id="map-canvas"></div>
--->
-    </body>
+        <!-- 영상 -->
+        <div class="contents-box animate-grow" ng-show="focus=='music'">
+            <iframe id="youtube_player" class="yt_player_iframe" width="100%" ng-src="{{currentYoutubeUrl}}" allowfullscreen="true" allowscriptaccess="always" frameborder="0"></iframe>
+        </div>
+        <!-- 길찾기 -->
+        <!--<div class="panel-body" >
+            <google-map control="map.control" center="map.center" zoom="map.zoom">
+                <marker coords="marker.center"></marker>
+            </google-map>
+            <div id="directionsList" ng-show="directions.showList" class="panel panel-primary"></div>
+            <div class="form-group">
+                <label for="destination" class="col-sm-2 control-label">Destination</label>
+                <div class="col-sm-8">
+                    <input type="text" id="destination" class="form-control" ng-model="directions.destination" />
+                    <button class="btn btn-primary" ng-click="getDirections()">Get Directions</button>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="middle-center">
+            <!-- 안녕 Zele -->
+            <div class="animate-grow" ng-show="focus=='default'">
+                <h1>{{complement}}</h1>
+            </div>
+
+            <!-- 인사 -->
+            <h2 class="animate-grow" ng-show="focus=='name'">반가워요 {{user.name}}님(o^^o)</h2>
+        </div>
+
+        <div class="bottom-center">
+            <div class="commands animate-grow" ng-show="focus == 'commands'">
+                <h2>사용 가능한 질문</h2>
+                <dl>
+                    <dt>사용 가능한 질문</dt>
+                    <dt>"홈으로,메인화면" </dt>
+                    <dt>"안녕 SAM" </dt>
+                    <dt>"나는 00 야" </dt>
+                    <dt>"잘 자 SAM" </dt>
+                    <dt>"뉴스 보여줘" </dt>
+                    <dt>"영상/음악 틀어줘" </dt>
+                    <dt>"오늘 날씨 어때?"</dt>
+                </dl>
+            </div>
+        </div>
+
+        <!-- 인식글 -->
+        <div class="interim-result" ng-bind="interimResult"></div><br>
+    </div>
+
+    <!-- 잠자러가 -->
+    <div ng-show="focus == 'sleep'" class="sleep-cover fade"></div>
+
+</body>
+
 </html>
