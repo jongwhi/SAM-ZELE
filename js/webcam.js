@@ -1,3 +1,35 @@
+(function(){
+    'use strict';
+    var enabled = false; // A flag to know when start or stop the camera
+    var WebCamera = require("webcamjs"); // Use require to add webcamjs
+    var remote = require('electron').remote; // Load remote component that contains the dialog dependency
+    var fs = require('fs'); // Load the File System to execute our common
+    
+    function rekog(){
+        let service = {};
+        service.rekog = {};
+        
+        service.webcamStart = function(){
+            if (!enabled) { // Start the camera !
+                enabled = true;
+                WebCamera.attach('#camdemo');
+                console.log("The camera has been started");
+            } else { // Disable the camera !
+                enabled = false;
+                WebCamera.reset();
+                console.log("The camera has been disabled");
+            }
+        }
+
+        return service;
+    }
+
+    angular.module('myApp').factory('RekogService',rekog);
+    //controller에 WeatherService 라는 이름의 서비스로 주입가능
+    //forcast 의 return 값 을 사용가능.
+}());
+
+ // webcam
 var enabled = false; // A flag to know when start or stop the camera
 var WebCamera = require("webcamjs"); // Use require to add webcamjs
 var remote = require('electron').remote; // Load remote component that contains the dialog dependency
