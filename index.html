@@ -43,7 +43,6 @@
     <script src="js/gmailList.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/traffic.js"></script>
-    <script src="js/webcam.js"></script>
 
     <!-- Style -->
     <link rel="stylesheet" href="css/main.css">
@@ -64,7 +63,7 @@
 <div class="top-right">
     <span class="summary">Today's Weather </span> <br><br>
     <div class="dust">
-        <div> 미세먼지 : {{dust.pm}} / {{rekog.Similarity}}</div>
+        <div> 미세먼지 : {{dust.pm}} / {{rekog}}</div>
         <br>
     </div>
     <span class="icon-big dimmed wi wi-fw {{currentForecast.wi}}"> </span>
@@ -84,13 +83,6 @@
 <!-- 가운데 -->
 <div class="container">
     <br><br><br><br><br><br><br><br><br><br>
-    <!-- 웹캠 -->
-    <div id="camdemo" style="width: 320px; height: 240px; text-align: center; margin: 0 auto;"></div><br>
-    <div style="text-align:center;">
-        <input type="button" id="savefile" onclick="savephoto()" value="Save photo in Desktop" />
-        <script type="text/jscript" src="js/webcam.js"></script><br>
-        <img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-    </div>
     
     <!--<div class="bottom-left">
      &lt;!&ndash;Calendar&ndash;&gt;
