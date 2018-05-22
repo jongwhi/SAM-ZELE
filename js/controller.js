@@ -24,13 +24,13 @@
             SourceImage:{    
                 S3Object : {
                     Bucket: "zele-seon",
-                    Name : "seon2.jpg"
+                    Name : "seon1.jpg"
                 }
             },
             TargetImage:{
                 S3Object:{
                     Bucket: "zele-seon",
-                    Name: "seon3.jpeg"
+                    Name: "seon2.jpeg"
                 }
             },
             SimilarityThreshold : 0.0
