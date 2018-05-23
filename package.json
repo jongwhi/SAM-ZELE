@@ -16,7 +16,7 @@
   "dependencies": {
     "angular": "^1.6.9",
     "annyang": "^2.6.0",
-    "aws-sdk": "^2.243.1",
+    "aws-sdk": "^2.245.1",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
     "forecast": "^0.3.2",

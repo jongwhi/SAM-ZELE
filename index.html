@@ -14,10 +14,14 @@
     <script>
         document.write('<base href="' + document.location + '" />');
     </script>
-    <script data-require="google-maps@1.0.0" data-semver="1.0.0" src="http://maps.google.com/maps/api/js?key=AIzaSyB9lH2Q94i1eYdSCqsNgFWDkWT3zO1gwQ8&v=3.exp&sensor=false"></script>
-    <script data-require="angular.js@1.2.x" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js" data-semver="1.2.17"></script>
-    <script data-require="lodash-underscore@*" data-semver="2.4.1" src="https://rawgit.com/lodash/lodash/2.4.1/dist/lodash.underscore.min.js"></script>
-    <script data-require="angular-google-maps@*" data-semver="1.1.4" src="https://rawgit.com/nlaplante/angular-google-maps/1.1.4/dist/angular-google-maps.min.js"></script>
+    <script data-require="google-maps@1.0.0" data-semver="1.0.0"
+            src="http://maps.google.com/maps/api/js?key=AIzaSyB9lH2Q94i1eYdSCqsNgFWDkWT3zO1gwQ8&v=3.exp&sensor=false"></script>
+    <script data-require="angular.js@1.2.x" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"
+            data-semver="1.2.17"></script>
+    <script data-require="lodash-underscore@*" data-semver="2.4.1"
+            src="https://rawgit.com/lodash/lodash/2.4.1/dist/lodash.underscore.min.js"></script>
+    <script data-require="angular-google-maps@*" data-semver="1.1.4"
+            src="https://rawgit.com/nlaplante/angular-google-maps/1.1.4/dist/angular-google-maps.min.js"></script>
 
     <!-- 교통정보 -->
     <script type="text/javascript" src="http://openapi.its.go.kr/javascript/jquery.xml2json.js"></script>
@@ -43,7 +47,6 @@
     <script src="js/gmailList.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/traffic.js"></script>
-    <script src="js/webcam.js"></script>
 
     <!-- Style -->
     <link rel="stylesheet" href="css/main.css">
@@ -57,14 +60,13 @@
 <div class="top-left">
     {{clock.year}}/{{clock.month}}/{{clock.day}} {{clock.date}}<br>
     <span class="hour">{{clock.hour}}:{{clock.minute}} {{clock.ampm}}</span>
-
 </div>
 
 <!--오른 쪽 위 날씨-->
 <div class="top-right">
     <span class="summary">Today's Weather </span> <br><br>
     <div class="dust">
-        <div> 미세먼지 : {{dust.pm}} / {{rekog}}</div>
+        <div> 미세먼지 : {{dust.pm}}</div>
         <br>
     </div>
     <span class="icon-big dimmed wi wi-fw {{currentForecast.wi}}"> </span>
@@ -84,37 +86,33 @@
 <!-- 가운데 -->
 <div class="container">
     <br><br><br><br><br><br><br><br><br><br>
-    <!-- 웹캠 -->
-        <div id="camdemo" style="width: 320px; height: 240px; text-align: center; margin: 0 auto;"></div><br>
-        <div style="text-align:center;">
-            <input type="button" id="savefile" onclick="savephoto()" value="Save photo in Desktop" />
-            <script type="text/jscript" src="js/webcam.js"></script><br>
-            <img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-        </div>
-    
-    <!--<div class="bottom-left">
-     &lt;!&ndash;Calendar&ndash;&gt;
-    <fieldset>
-        <legend>Calendar</legend>
-        <div ng-repeat="list in calendar" ng-if="5>$index >0">
-            {{list.start.dateTime || list.start.date}} -  {{list.summary}}
-            &lt;!&ndash;{{list.start.dateTime || list.start.date}} -  {{list.summary}}&ndash;&gt;
-        </div>
-    </fieldset>
-    <br><br><br><br><br><br><br><br><br><br><br>
-    &lt;!&ndash;Gmail&ndash;&gt;
 
+    <!--웹캠 -->
+    <div id="camdemo" style="width: 320px; height: 240px; text-align: center; margin: 0 auto;" ></div>
+
+    <!--사용자 정보 화면-->
+    <div class="bottom-left" ng-show="focus=='camera'">
+        <!--Calendar-->
+        <fieldset>
+            <legend>Calendar</legend>
+            <div ng-repeat="list in calendar" ng-if="5>$index >0">
+                {{list.start.dateTime || list.start.date}} - {{list.summary}}
+                <!--{{list.start.dateTime || list.start.date}} -  {{list.summary}}-->
+            </div>
+        </fieldset>
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <!--Gmail-->
         <fieldset>
             <legend>Gmail</legend>
             {{message}}
         </fieldset>
-    </div>-->
+    </div>
 
     <div class="middle-center">
 
         <div style="margin:auto" ng-show="focus=='traffic'">
-            <div id="traffic" >
-            {{traffic}}
+            <div id="traffic">
+                {{traffic}}
             </div>
         </div>
         <!-- 뉴스 -->

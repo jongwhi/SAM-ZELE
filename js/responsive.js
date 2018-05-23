@@ -78,9 +78,20 @@ var FUNCTIONSERVICE = {
         });
     },
 
+    /*교통편 */
     traffic : function($scope,TrafficServcie){
         $scope.traffic=TrafficServcie;
         $scope.focus="traffic";
+
+    },
+    /*사용자 정보 화면*/
+    user : function($scope, GmailListService, CalendarService){
+        $scope.message = GmailListService.list();
+        CalendarService.init().then(function(token){
+            $scope.calendar= CalendarService.list(token)
+        })
+        $scope.focus="user";
+
     }
 
 

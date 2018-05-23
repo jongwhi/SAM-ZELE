@@ -14,46 +14,31 @@
                     $scope, $interval, $timeout, $sce) {
 
         let _this = this;
-        var AWS = require('aws-sdk');
-        var rekognition = new AWS.Rekognition({
-            accessKeyId: "",
-            secretAccessKey:"",
-            region: "ap-northeast-1"
-        });
-        var params = {
-            SourceImage:{    
-                S3Object : {
-                    Bucket: "zele-seon",
-                    Name : "seon1.jpg"
-                }
-            },
-            TargetImage:{
-                S3Object:{
-                    Bucket: "zele-seon",
-                    Name: "seon2.jpeg"
-                }
-            },
-            SimilarityThreshold : 0.0
-        };
-        var rekog = function(){
-            rekognition.compareFaces(params, function(err, data){
-                if(err){
-                    console.log(err, err.stack);
-                } else {
-                    console.log(data.FaceMatches[0].Similarity);
-                    $scope.rekog = data.FaceMatches[0].Similarity;
-                }
-            })
-        };
-        $interval(rekog, 1000);
         var command = COMMANDS.ko;
         var DEFAULT_COMMAND_TEXT = command.default;
         var functionService = FUNCTIONSERVICE;
 
-        // instantiate google map objects for directions
+        //길찾기 관련변수
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
         var geocoder = new google.maps.Geocoder();
+
+
+        //웹캠 관련변수
+        var enabled = false; // A flag to know when start or stop the camera
+        var WebCamera = require("webcamjs"); // Use require to add webcamjs
+        var remote = require('electron').remote; // Load remote component that contains the dialog dependency
+        var fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
+
+        // aws 관련변수
+        var AWS = require('aws-sdk');
+        var options = {
+            accessKeyId:"",
+            secretAccessKey:"",
+            region:"ap-northeast-1"
+        }
+        var S3 = new AWS.S3(options);
+        var rekognition = new AWS.Rekognition(options);
 
         $scope.listening = false;
         $scope.complement = command.hi; //안녕 Zele!
@@ -83,12 +68,69 @@
             $scope.interimResult = DEFAULT_COMMAND_TEXT;
         }
 
+        //웹캠 시작
+        var webcamStart =function() {
+            return new Promise(function(resolve,reject){
+                if (!enabled) {
+                    enabled = true;
+                    return resolve(WebCamera.attach('#camdemo'));
+                } else {
+                    //return reject(WebCamera.reset());  //Webcam 이 리셋되면 안됨.
+
+                }
+            })
+            };
+
+        //웹캠 파일 저장
+        var savephoto=function() {
+            console.log("Save button clicked");
+            if (enabled) {
+                return WebCamera.snap(function (data_uri) {
+                    var now = new Date();
+                    var fileName = __dirname+'/UserFaces/' + now.getFullYear() + now.getMonth() + now.getDate() + "_" + now.getHours() + now.getMinutes() + now.getSeconds() + '.png';
+                    console.log(fileName);
+
+                    var imageBuffer = processBase64Image(data_uri);
+
+                    try {
+                        fs.mkdirSync('UserFaces');
+                    } catch (e) {
+                        if (e.code != 'EEXIST') throw e; // 존재할경우 패스처리함.
+                    }
+
+                    fs.writeFile(fileName, imageBuffer.data, function (err) {
+                        if (err) {
+                            console.log("Cannot save the file :'( time to cry !");
+                        } else {
+                            console.log("Image saved succesfully");
+                        }
+                    });
+
+                });
+            } else {
+                console.log("Please enable the camera first to take the snapshot !");
+            }
+        }
+
+        //image 변환
+        function processBase64Image(dataString) {
+            var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+                response = {};
+
+            if (matches.length !== 3) {
+                return new Error('Invalid input string');
+            }
+
+            response.type = matches[1];
+            response.data = new Buffer(matches[2], 'base64');
+
+            return response;
+        }
+
+        //길찾기 정보
         var restDestination=function(){
-           // $scope.destination="목적지를말해주세요."
                 var request = {
                     origin: new google.maps.LatLng(37.588442, 127.006197),
-                    //: document.getElementById('destination').value,
-                    //destination: $interimResult,
                     destination: $scope.destination,
                     provideRouteAlternatives: true,
                     travelMode: eval("google.maps.DirectionsTravelMode.TRANSIT")
@@ -105,6 +147,7 @@
                     }
                 });
         }
+
 
         _this.init = function () {
 
@@ -137,25 +180,6 @@
             }
             dustData();
             $interval(dustData, 1000);
-
-
-
-            // 메일
-          /*  let gmail = function () {
-                $scope.message = GmailListService.list()
-            }
-            gmail();
-            //주기 늘림
-            $interval(gmail, 36000);
-
-            let calendar = function () {
-                CalendarService.init().then(function (token) {
-                    $scope.calendar = CalendarService.list(token)
-                })
-            }
-            calendar();
-            //주기 늘림
-            $interval(calendar, 36000);*/
 
 
             var defaultView = function () {
@@ -210,7 +234,6 @@
             });
             /*길 찾 기*/
             AnnyangService.addCommand(command.direction,function(){
-
                 AnnyangService.start(function (listening) {
                     $scope.listening = listening;
                 }, function (destination) {
@@ -221,11 +244,16 @@
                     $timeout(restDestination, 1000);
                     restDestinationout=$timeout($scope.destination,5000)
                 });
+                if (responsiveVoice.voiceSupport()) {
+                    responsiveVoice.speak("길찾기입니다.", "Korean Female");
+                }
                 $scope.focus="direction"
             })
-
             /*교통편*/
             AnnyangService.addCommand(command.traffic,function(){
+                if (responsiveVoice.voiceSupport()) {
+                    responsiveVoice.speak("교통편입니다.", "Korean Female");
+                }
                 var traffic=function() {
                     functionService.traffic($scope, TrafficService)
                 }
@@ -233,6 +261,27 @@
                 $interval(traffic,1000,10);
             })
 
+            /*사용자 정보 화면*/
+            AnnyangService.addCommand(command.user,function(){
+                if (responsiveVoice.voiceSupport()) {
+                    responsiveVoice.speak("민우님의 사용자 정보입니다.", "Korean Female");
+                }
+                var user=function() {
+                    functionService.user($scope, GmailListService, CalendarService);
+                }
+                user();
+                $interval(user,5000,20);
+            });
+
+            /* 카메라 */
+            AnnyangService.addCommand(command.webcam,function() {
+                AnnyangService.start(function () {
+                    //webcam 시작 후 6초뒤 사진 저장
+                    webcamStart().then(function () {
+                        $timeout(savephoto, 6000);
+                    })
+                });
+        });
 
 
             var resetCommandTimeout;
